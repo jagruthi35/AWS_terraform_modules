@@ -16,7 +16,7 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
+                        dir("tfcon")
                         {
                             git "https://github.com/jagruthi35/AWS_terraform_modules.git"
                         }
@@ -26,7 +26,7 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform init'
+                sh 'pwd;cd tfcon/ ; terraform init'
                 // #sh "pwd;cd terraform/ ; terraform plan -out tfplan1"
                 // #sh 'pwd;cd terraform/ ; terraform show -no-color tfplan1 >> tfplan1.txt'
             }
@@ -40,7 +40,7 @@ pipeline {
 
        //     steps {
        //         script {
-       //              def plan = readFile 'terraform/tfplan1.txt'
+       //              def plan = readFile 'tfcon/tfplan1.txt'
        //              input message: "Do you want to apply the plan?",
        //              parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
        //         }
@@ -49,8 +49,8 @@ pipeline {
 
         stage('Apply') {
             steps {
-                // #sh "pwd;cd terraform/ ; terraform apply -input=false tfplan1"
-                sh "pwd;cd terraform/ ; terraform apply -auto-approve"
+                // #sh "pwd;cd tfcon/ ; terraform apply -input=false tfplan1"
+                sh "pwd;cd tfcon/ ; terraform apply -auto-approve"
             }
         }
     }
