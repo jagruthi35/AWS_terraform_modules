@@ -1,7 +1,7 @@
 pipeline {
     tools {
         // Use the configured Terraform installation
-        terraform ‘Terraform’
+        terraform 'Terraform'
     }
     parameters {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
