@@ -3,5 +3,6 @@ terraform {
     bucket = "backendfile"
     key    = "backend/terraform.tfstate"
     region = "eu-central-1"
+    dynamodb_table= "s3_backend_lock"
   }
 }
