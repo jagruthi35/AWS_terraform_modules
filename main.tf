@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "cpeibucket"
+  bucket = "cpeibucket12"
 
   tags = {
     Name        = "My bucket"
