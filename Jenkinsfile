@@ -63,5 +63,23 @@ pipeline {
                 }
             }
         }
-    }
+        stage('Destroy') {
+            when {
+                expression { params.autoApprove != true }
+            }
+
+            steps {
+                script {
+                    def plan = readFile 'terraform/tfplan.txt'
+                    input message: "Do you want to destroy the infrastructure?",
+                          parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+                }
+
+                script {
+                    dir("terraform") {
+                        sh 'terraform destroy -auto-approve'
+                    }
+                }
+            }
+        }
 }
