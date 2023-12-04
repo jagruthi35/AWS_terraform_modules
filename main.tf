@@ -26,7 +26,7 @@ resource "aws_s3_bucket_object" "object" {
   source = "./organizations-100.csv"
 }
 
-resource "aws_s3_bucket" "example" {
+resource "aws_s3_bucket" "example2" {
   bucket = "cpeibucket14"
 
   tags = {
