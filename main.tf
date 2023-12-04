@@ -25,3 +25,12 @@ resource "aws_s3_bucket_object" "object" {
   key    = "organizations-100.csv"
   source = "./organizations-100.csv"
 }
+
+resource "aws_s3_bucket" "example" {
+  bucket = "cpeibucket14"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
