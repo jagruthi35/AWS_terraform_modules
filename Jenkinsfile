@@ -63,11 +63,9 @@ pipeline {
                 }
             }
         }
+        
         stage('Destroy') {
-            when {
-                expression { params.autoApprove != true }
-            }
-
+            
             steps {
                 script {
                     def plan = readFile 'terraform/tfplan.txt'
@@ -82,4 +80,5 @@ pipeline {
                 }
             }
         }
+    }
 }
