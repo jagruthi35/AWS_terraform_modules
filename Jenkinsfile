@@ -8,8 +8,8 @@ pipeline {
     } 
 
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID_1')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY_1')
     }
 
     agent {
@@ -64,21 +64,21 @@ pipeline {
             }
         }
         
-        stage('Destroy') {
+        // stage('Destroy') {
             
-            steps {
-                script {
-                    def plan = readFile 'terraform/tfplan.txt'
-                    input message: "Do you want to destroy the infrastructure?",
-                          parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-                }
+        //     steps {
+        //         script {
+        //             def plan = readFile 'terraform/tfplan.txt'
+        //             input message: "Do you want to destroy the infrastructure?",
+        //                   parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+        //         }
 
-                script {
-                    dir("terraform") {
-                        sh 'terraform destroy -auto-approve'
-                    }
-                }
-            }
-        }
+        //         script {
+        //             dir("terraform") {
+        //                 sh 'terraform destroy -auto-approve'
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
